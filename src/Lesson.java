@@ -48,7 +48,7 @@ public class Lesson {
         return number >= 0;
     }
 
-    public static void loop(String string, int number) {
+    public static void useLoop(String string, int number) {
         for (int i = 0; i < number; i++) {
             System.out.println(i + 1 + ". " + string);
         }

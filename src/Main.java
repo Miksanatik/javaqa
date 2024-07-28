@@ -32,7 +32,7 @@ public class Main {
         System.out.println();
 
         System.out.println("Task 8: string in the loop");
-        Lesson.loop("Hello world", 5);
+        Lesson.useLoop("Hello, world!", 5);
         System.out.println();
 
         System.out.println("Task 9: is leap year?");
@@ -48,11 +48,11 @@ public class Main {
         Lesson.fill();
         System.out.println();
 
-        System.out.println("Task 12: numbers filling");
+        System.out.println("Task 12: numbers editing");
         Lesson.multiply();
         System.out.println();
 
-        System.out.println("Task 13: bypass matrix");
+        System.out.println("Task 13: matrix bypass");
         Lesson.bypassArray();
         System.out.println();
 
