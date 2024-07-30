@@ -21,14 +21,14 @@ public class Person {
         this.age = age;
     }
 
-    @Override
-    public String toString() {
-        return "[" +name + ", " +
+
+    public void print() {
+        System.out.println("[" +name + ", " +
                 position.name() + ", " +
                 email + ", " +
                 phoneNumber + ", " +
                 salary + ", " +
-                age + "]";
+                age + "]");
     }
 }
 
