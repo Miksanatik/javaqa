@@ -11,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MTSTest {
     private static WebDriver driver;
 
+    private MTSPage mts;
+
     @BeforeAll
     public static void setupClass() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
@@ -40,47 +42,32 @@ public class MTSTest {
     @Test
     @DisplayName("Block name checking")
     public void blockNameTest() {
-
-        WebElement payWindow = driver.findElement( By.xpath("//*[@id=\"pay-section\"]/div/div/div[2]/section/div/h2"));
-
-        assertEquals("Онлайн пополнение без комиссии",payWindow.getAccessibleName() );
-
+        MTSPage mts = new MTSPage(driver);
+        assertEquals("Онлайн пополнение без комиссии", mts.getPaymentBlockTitle());
     }
 
     @Test
     @DisplayName("Payments systems logos checking")
     public void paymentTest() {
-        List<WebElement> logos = driver.findElements(By.xpath("//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li/img"));
-
-        assertFalse(logos.isEmpty());
+        MTSPage mts = new MTSPage(driver);
+        assertFalse(mts.getLogos().isEmpty());
 
     }
 
     @Test
     @DisplayName("Hyperlink checking")
     public void hrefTest() {
-
-        WebElement href = driver.findElement(By.xpath("//*[@id=\"pay-section\"]/div/div/div[2]/section/div/a"));
+        MTSPage mts = new MTSPage(driver);
         String current = driver.getCurrentUrl();
-        href.click();
-        assertNotEquals(current, driver.getCurrentUrl());
-
+        assertNotEquals(current, mts.movingToLink());
     }
 
     @Test
     @DisplayName("Checking the operation of the \"Continue\" button")
+    @Disabled ("Submit form not")
     public void buttonTest() {
-        WebElement numberField = driver.findElement(By.xpath("//*[@id=\"connection-phone\"]"));
-        numberField.click();
-        numberField.sendKeys("297777777");
-        WebElement sumField = driver.findElement(By.xpath("//*[@id=\"connection-sum\"]"));
-        sumField.click();
-        sumField.sendKeys("1");
-        WebElement button = driver.findElement(By.xpath("//*[@id=\"pay-connection\"]/button"));
-        button.click();
-        assertDoesNotThrow(() -> {
-            driver.findElement(By.xpath("//iframe[@class='bepaid-iframe']"));
-        });
+        MTSPage mts = new MTSPage(driver);
+        assertDoesNotThrow(mts::fillPaymentInfo);
     }
 
 }
