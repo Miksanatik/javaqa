@@ -31,7 +31,7 @@ public class MTSTest {
     public void acceptCookies(){
         driver.get("https://mts.by");
         try {
-            WebElement cookieBtn = driver.findElement(By.xpath("//*[@id=\"cookie-agree\"]"));
+            WebElement cookieBtn = driver.findElement(By.id("cookie-agree"));
             if (cookieBtn.isDisplayed()) {
                 cookieBtn.click();
             }
@@ -65,10 +65,9 @@ public class MTSTest {
 
     @Test
     @DisplayName("Checking the operation of the \"Continue\" button")
-    //@Disabled ("Submit form not working right now")
     public void buttonTest() {
         MTSPage mts = new MTSPage(driver);
-        assertDoesNotThrow(mts::fillPaymentInfo);
+        assertDoesNotThrow(() -> mts.fillPaymentInfo("297777777","1"));
     }
 
     @Test
@@ -85,5 +84,11 @@ public class MTSTest {
         for (int i = 0; i < expected.length; i++) {
             assertEquals(expected[i], mts.getPlaceholder().get(i));
         }
+    }
+
+    @Test
+    public void checkPaymentWindow() {
+        MTSPage mts = new MTSPage(driver);
+        mts.openPaymentWindow("297777777","1");
     }
 }

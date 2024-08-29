@@ -20,7 +20,9 @@ public class MTSPage {
     private final By numberField = By.xpath("//*[@id=\"connection-phone\"]");
     private final By sumField = By.xpath("//*[@id=\"connection-sum\"]");
     private final By submitBtn = By.xpath("//*[@id=\"pay-connection\"]/button");
+
     private final By paymentIFrame = By.xpath("//iframe[@class='bepaid-iframe']");
+    private final By price = By.xpath("//div[@class='pay-description__cost']/span");
 
     private final By fields = By.xpath("//section[@class=\"pay\"]//div//input");
 
@@ -43,18 +45,24 @@ public class MTSPage {
         return driver.getCurrentUrl();
     }
 
-    public void fillPaymentInfo() {
+    public void fillPaymentInfo(String number, String sum) {
         driver.findElement(numberField).click();
-        driver.findElement(numberField).sendKeys("297777777");
+        driver.findElement(numberField).sendKeys(number);
         driver.findElement(sumField).click();
-        driver.findElement(sumField).sendKeys("1");
+        driver.findElement(sumField).sendKeys(sum);
         driver.findElement(submitBtn).click();
-        //driver.findElement(paymentIFrame);
     }
 
     public List<String> getPlaceholder(){
         return driver.findElements(fields).stream()
                 .map(webElement -> webElement.getAttribute("placeholder")).collect(Collectors.toList());
+    }
+
+    public void openPaymentWindow(String number, String sum) {
+        fillPaymentInfo(number, sum);
+        driver.switchTo().frame(driver.findElement(paymentIFrame));
+        WebElement element =  driver.findElement(By.xpath("//div[@class='pay-description__cost']/span"));
+        System.out.println(element.getText());
     }
 
 }
