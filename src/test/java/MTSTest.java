@@ -4,6 +4,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.NoSuchElementException;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,26 +18,26 @@ public class MTSTest {
     public static void setupClass() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
-        driver.get("https://mts.by");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        try {
-            WebElement coockieBtn = driver.findElement(By.xpath("//*[@id=\"cookie-agree\"]"));
-            if (coockieBtn.isDisplayed()) {
-                coockieBtn.click();
-            }
-        } catch (NoSuchElementException ignored) {
-            //ignore exception if cookie acceptance window does not appear
-        }
+
     }
 
     @AfterAll
     public static void tearDown(){
-        driver.close();
+        driver.quit();
     }
 
     @BeforeEach
-    public void setUpEach() {
-        driver.navigate().refresh();
+    public void acceptCookies(){
+        driver.get("https://mts.by");
+        try {
+            WebElement cookieBtn = driver.findElement(By.xpath("//*[@id=\"cookie-agree\"]"));
+            if (cookieBtn.isDisplayed()) {
+                cookieBtn.click();
+            }
+        } catch (NoSuchElementException ignored) {
+            //ignore exception if cookie acceptance window does not appear
+        }
     }
 
     @Test
@@ -64,10 +65,25 @@ public class MTSTest {
 
     @Test
     @DisplayName("Checking the operation of the \"Continue\" button")
-    @Disabled ("Submit form not")
+    //@Disabled ("Submit form not working right now")
     public void buttonTest() {
         MTSPage mts = new MTSPage(driver);
         assertDoesNotThrow(mts::fillPaymentInfo);
     }
 
+    @Test
+    @DisplayName("Checking placeholders")
+    public void checkPlaceholders(){
+        String[] expected = new String[] {"Номер телефона","Сумма","E-mail для отправки чека",
+                                            "Номер абонента", "Сумма","E-mail для отправки чека",
+                                            "Номер счета на 44","Сумма","E-mail для отправки чека",
+                                            "Номер счета на 2073","Сумма","E-mail для отправки чека"};
+
+        ArrayList<String> actual = new ArrayList<>();
+        MTSPage mts = new MTSPage(driver);
+
+        for (int i = 0; i < expected.length; i++) {
+            assertEquals(expected[i], mts.getPlaceholder().get(i));
+        }
+    }
 }
