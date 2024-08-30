@@ -5,29 +5,28 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MTSPage {
     private final WebDriver driver;
+    private final WebDriverWait wait;
 
-    private final By blockTitle = By.xpath("//*[@id=\"pay-section\"]/div/div/div[2]/section/div/h2");
-    private final By logosList = By.xpath("//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li/img");
-    private final By link = By.xpath("//*[@id=\"pay-section\"]/div/div/div[2]/section/div/a");
+    private final By blockTitle = By.xpath("//div[@class='pay__wrapper']/h2");
+    private final By logosList = By.xpath("//div[@class='pay__partners']//img");
+    private final By link = By.xpath("//div[@class='pay__wrapper']/a");
 
-    private final By selectComServices = By.xpath("//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[1]/div[1]/div[2]/ul/li[1]/p");
     private final By numberField = By.xpath("//*[@id=\"connection-phone\"]");
     private final By sumField = By.xpath("//*[@id=\"connection-sum\"]");
-    private final By submitBtn = By.xpath("//*[@id=\"pay-connection\"]/button");
 
     private final By paymentIFrame = By.xpath("//iframe[@class='bepaid-iframe']");
-    private final By price = By.xpath("//div[@class='pay-description__cost']/span");
-
     private final By fields = By.xpath("//section[@class=\"pay\"]//div//input");
+    private final By button = By.xpath("//form[@id='pay-connection']/button");
 
     public  MTSPage (WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//section[@class = 'pay']"))));
     }
 
     public String getPaymentBlockTitle () {
@@ -46,23 +45,25 @@ public class MTSPage {
     }
 
     public void fillPaymentInfo(String number, String sum) {
-        driver.findElement(numberField).click();
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(numberField))).click();
         driver.findElement(numberField).sendKeys(number);
-        driver.findElement(sumField).click();
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(sumField))).click();
         driver.findElement(sumField).sendKeys(sum);
-        driver.findElement(submitBtn).click();
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(button))).click();
     }
 
     public List<String> getPlaceholder(){
         return driver.findElements(fields).stream()
-                .map(webElement -> webElement.getAttribute("placeholder")).collect(Collectors.toList());
+                .map(webElement -> webElement.getAttribute("placeholder"))
+                .collect(Collectors.toList());
     }
 
-    public void openPaymentWindow(String number, String sum) {
+    public PaymentIFrame openPaymentWindow(String number, String sum) {
         fillPaymentInfo(number, sum);
-        driver.switchTo().frame(driver.findElement(paymentIFrame));
-        WebElement element =  driver.findElement(By.xpath("//div[@class='pay-description__cost']/span"));
-        System.out.println(element.getText());
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.switchTo()
+                .frame(wait.until(ExpectedConditions.visibilityOf(driver.findElement(paymentIFrame))));
+        return new PaymentIFrame(driver);
     }
 
 }

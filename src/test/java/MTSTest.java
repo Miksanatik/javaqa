@@ -4,15 +4,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.NoSuchElementException;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+
+
 public class MTSTest {
     private static WebDriver driver;
-
-    private MTSPage mts;
 
     @BeforeAll
     public static void setupClass() {
@@ -42,6 +42,7 @@ public class MTSTest {
 
     @Test
     @DisplayName("Block name checking")
+    
     public void blockNameTest() {
         MTSPage mts = new MTSPage(driver);
         assertEquals("Онлайн пополнение без комиссии", mts.getPaymentBlockTitle());
@@ -78,7 +79,6 @@ public class MTSTest {
                                             "Номер счета на 44","Сумма","E-mail для отправки чека",
                                             "Номер счета на 2073","Сумма","E-mail для отправки чека"};
 
-        ArrayList<String> actual = new ArrayList<>();
         MTSPage mts = new MTSPage(driver);
 
         for (int i = 0; i < expected.length; i++) {
@@ -88,7 +88,26 @@ public class MTSTest {
 
     @Test
     public void checkPaymentWindow() {
+
+        String number = "297777777";
+        String sum = "1.00";
+        String[] expected = new String[] {
+                "Номер карты",
+                "Срок действия",
+                "CVC",
+                "Имя держателя (как на карте)"
+        };
+
         MTSPage mts = new MTSPage(driver);
-        mts.openPaymentWindow("297777777","1");
+        PaymentIFrame frame = mts.openPaymentWindow(number,sum);
+
+        List<String> placeholders = frame.getPlaceholders();
+        for(int i = 0; i<placeholders.size(); i++) {
+            assertEquals(expected[i], placeholders.get(i));
+        }
+        assertTrue(frame.isContainsNumber(number));
+        assertEquals(sum, frame.getPriceLabel());
+        assertEquals(sum, frame.getPriceFromButton());
+        assertFalse(frame.getLogos().isEmpty());
     }
 }
