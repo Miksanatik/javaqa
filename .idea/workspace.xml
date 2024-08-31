@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ffb8b44-50df-4973-b327-2f848c225034" name="Changes" comment="Add lesson 16">
-      <change afterPath="$PROJECT_DIR$/src/test/java/APITest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/MTSTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/APITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/APITest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +44,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "JUnit.APITest.executor": "Run",
+    "JUnit.APITest.testDelete.executor": "Run",
+    "JUnit.APITest.testGet.executor": "Run",
+    "JUnit.APITest.testPatch.executor": "Run",
+    "JUnit.APITest.testPost.executor": "Run",
+    "JUnit.APITest.testPostFormData.executor": "Run",
+    "JUnit.APITest.testPostRawText.executor": "Run",
+    "JUnit.APITest.testPut.executor": "Run",
     "JUnit.MTSTest.blockNameTest.executor": "Run",
     "JUnit.MTSTest.buttonTest.executor": "Run",
     "JUnit.MTSTest.executor": "Run",
@@ -61,51 +67,51 @@
     "project.structure.side.proportion": "0.0"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.MTSTest">
-    <configuration name="MTSTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.APITest">
+    <configuration name="APITest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="javaqa" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MTSTest" />
+      <option name="MAIN_CLASS_NAME" value="APITest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MTSTest.blockNameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="APITest.testDelete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="javaqa" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MTSTest" />
-      <option name="METHOD_NAME" value="blockNameTest" />
+      <option name="MAIN_CLASS_NAME" value="APITest" />
+      <option name="METHOD_NAME" value="testDelete" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MTSTest.buttonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="APITest.testPatch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="javaqa" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MTSTest" />
-      <option name="METHOD_NAME" value="buttonTest" />
+      <option name="MAIN_CLASS_NAME" value="APITest" />
+      <option name="METHOD_NAME" value="testPatch" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MTSTest.hrefTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="APITest.testPostFormData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="javaqa" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MTSTest" />
-      <option name="METHOD_NAME" value="hrefTest" />
+      <option name="MAIN_CLASS_NAME" value="APITest" />
+      <option name="METHOD_NAME" value="testPostFormData" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MTSTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="APITest.testPut" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="javaqa" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MTSTest" />
-      <option name="METHOD_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="APITest" />
+      <option name="METHOD_NAME" value="testPut" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -113,11 +119,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MTSTest" />
-        <item itemvalue="JUnit.MTSTest.blockNameTest" />
-        <item itemvalue="JUnit.MTSTest.buttonTest" />
-        <item itemvalue="JUnit.MTSTest.test" />
-        <item itemvalue="JUnit.MTSTest.hrefTest" />
+        <item itemvalue="JUnit.APITest" />
+        <item itemvalue="JUnit.APITest.testDelete" />
+        <item itemvalue="JUnit.APITest.testPatch" />
+        <item itemvalue="JUnit.APITest.testPut" />
+        <item itemvalue="JUnit.APITest.testPostFormData" />
       </list>
     </recent_temporary>
   </component>
@@ -140,6 +146,17 @@
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add lesson 15" />
