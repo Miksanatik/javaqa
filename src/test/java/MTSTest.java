@@ -87,6 +87,7 @@ public class MTSTest {
     }
 
     @Test
+    @DisplayName("Checking payment window's elements")
     public void checkPaymentWindow() {
 
         String number = "297777777";
