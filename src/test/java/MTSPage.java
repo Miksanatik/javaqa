@@ -1,3 +1,4 @@
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,6 +30,7 @@ public class MTSPage {
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//section[@class = 'pay']"))));
     }
 
+    @Step("Block name checking")
     public String getPaymentBlockTitle () {
         return driver.findElement( blockTitle).getAccessibleName();
     }
@@ -36,7 +38,7 @@ public class MTSPage {
     public List<WebElement> getLogos () {
         return driver.findElements(logosList);
     }
-
+    @Step("Move to hyperlink")
     public String movingToLink() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(link));
@@ -44,6 +46,7 @@ public class MTSPage {
         return driver.getCurrentUrl();
     }
 
+    @Step("Fill payment Info")
     public void fillPaymentInfo(String number, String sum) {
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(numberField))).click();
         driver.findElement(numberField).sendKeys(number);
@@ -52,12 +55,13 @@ public class MTSPage {
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(button))).click();
     }
 
+    @Step ("Checking placeholders")
     public List<String> getPlaceholder(){
         return driver.findElements(fields).stream()
                 .map(webElement -> webElement.getAttribute("placeholder"))
                 .collect(Collectors.toList());
     }
-
+    @Step("Open payment confirmation window")
     public PaymentIFrame openPaymentWindow(String number, String sum) {
         fillPaymentInfo(number, sum);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

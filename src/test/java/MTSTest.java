@@ -1,3 +1,7 @@
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,7 +14,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 
-
+@Owner("Aliaksei Sapanovich")
+@Epic("Payment interface")
+@Feature("Payment features")
 public class MTSTest {
     private static WebDriver driver;
 
@@ -41,14 +47,15 @@ public class MTSTest {
     }
 
     @Test
+    @Story("Block design")
     @DisplayName("Block name checking")
-    
     public void blockNameTest() {
         MTSPage mts = new MTSPage(driver);
         assertEquals("Онлайн пополнение без комиссии", mts.getPaymentBlockTitle());
     }
 
     @Test
+    @Story("Block design")
     @DisplayName("Payments systems logos checking")
     public void paymentTest() {
         MTSPage mts = new MTSPage(driver);
@@ -57,6 +64,7 @@ public class MTSTest {
     }
 
     @Test
+    @Story("Block design")
     @DisplayName("Hyperlink checking")
     public void hrefTest() {
         MTSPage mts = new MTSPage(driver);
@@ -65,6 +73,7 @@ public class MTSTest {
     }
 
     @Test
+    @Story("Payment functionality")
     @DisplayName("Checking the operation of the \"Continue\" button")
     public void buttonTest() {
         MTSPage mts = new MTSPage(driver);
@@ -72,6 +81,7 @@ public class MTSTest {
     }
 
     @Test
+    @Story("Block design")
     @DisplayName("Checking placeholders")
     public void checkPlaceholders(){
         String[] expected = new String[] {"Номер телефона","Сумма","E-mail для отправки чека",
@@ -87,6 +97,8 @@ public class MTSTest {
     }
 
     @Test
+    @Story("Payment confirmation")
+    @DisplayName("Payment window functionality testing")
     public void checkPaymentWindow() {
 
         String number = "297777777";

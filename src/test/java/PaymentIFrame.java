@@ -1,3 +1,4 @@
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,19 +30,23 @@ public class PaymentIFrame {
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[@class='app-wrapper__content']"))));
     }
 
+    @Step ("Checking phone number")
     public boolean isContainsNumber(String number) {
         WebElement descriptionStr = driver.findElement(description);
         return  descriptionStr.getText().contains(number);
     }
 
+    @Step("Checking price from label")
     public String getPriceLabel() {
         return driver.findElement(cost).getText().split(" ")[0];
     }
 
+    @Step("Checking price from button")
     public String getPriceFromButton() {
         return driver.findElement(buttonText).getText().split(" ")[1];
     }
 
+    @Step("Checking placeholders")
     public List<String> getPlaceholders(){
         return driver.findElements(placeholders)
                 .stream()
@@ -49,6 +54,7 @@ public class PaymentIFrame {
                 .collect(Collectors.toList());
     }
 
+    @Step("Checking logos")
     public List<WebElement> getLogos() {
         return driver.findElements(logos);
     }
