@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","7467","Block name checking","","Tue Sep 03 17:43:45 MSK 2024","passed","Tue Sep 03 17:43:53 MSK 2024","","MTSTest","MTSTest","blockNameTest"
+"","7220","Checking placeholders","","Tue Sep 03 17:45:25 MSK 2024","passed","Tue Sep 03 17:45:32 MSK 2024","","MTSTest","MTSTest","checkPlaceholders"
+"","8191","Hyperlink checking","","Tue Sep 03 17:44:23 MSK 2024","passed","Tue Sep 03 17:44:31 MSK 2024","","MTSTest","MTSTest","hrefTest"
+"","16882","Payment window functionality testing","","Tue Sep 03 17:35:55 MSK 2024","passed","Tue Sep 03 17:36:12 MSK 2024","","MTSTest","MTSTest","checkPaymentWindow"
+"","13299","Checking the operation of the ""Continue"" button","","Tue Sep 03 17:35:29 MSK 2024","passed","Tue Sep 03 17:35:42 MSK 2024","","MTSTest","MTSTest","buttonTest"
+"","4917","Payments systems logos checking","","Tue Sep 03 17:44:02 MSK 2024","passed","Tue Sep 03 17:44:07 MSK 2024","","MTSTest","MTSTest","paymentTest"
